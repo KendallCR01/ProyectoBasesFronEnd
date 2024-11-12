@@ -2,7 +2,7 @@
 
 export async function getTrabajadores() {
     try {
-        const response = await fetch('http://localhost:3000/obtener-todos-trabajadores2');
+        const response = await fetch('http://localhost:3000/obtener-todos-trabajadores');
         const data = await response.json();
 
         if (data.message) {

@@ -2,7 +2,7 @@
 
 export async function getMaquinas() {
     try {
-        const response = await fetch('http://localhost:3000/obtener-todas-maquinas2');
+        const response = await fetch('http://localhost:3000/obtener-todas-maquinas');
         const data = await response.json();
 
         if (data.message) {

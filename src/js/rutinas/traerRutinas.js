@@ -5,7 +5,7 @@
 
 export async function getRutinas() {
     try {
-        const response = await fetch('http://localhost:3000/obtener-todas-rutinas2');
+        const response = await fetch('http://localhost:3000/obtener-todas-rutinas');
         const data = await response.json();
 
         if (data.message) {

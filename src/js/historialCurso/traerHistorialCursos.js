@@ -2,7 +2,7 @@
 
 export async function getHistorialCursos() {
     try {
-        const response = await fetch('http://localhost:3000/obtener-todos-historial-curso2');
+        const response = await fetch('http://localhost:3000/obtener-todos-historial-curso');
         const data = await response.json();
 
         if (data.message) {

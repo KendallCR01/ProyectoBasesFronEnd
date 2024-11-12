@@ -79,7 +79,7 @@ export const login = async () => {
         try {
             event.preventDefault();
             const userRol= await loginUser(inputUsername.value,inputPassword.value);
-            if(userRol==='INSTRUCTOR'){
+            if(userRol==='instructor'){
                 viewInstructor(inputUsername.value);
             }
         } catch (error) {

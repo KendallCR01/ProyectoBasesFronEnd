@@ -5,8 +5,8 @@ import { createSuccessModal } from "../mensajesSalidas/succesModal.js";
 
 export const editarCurso = async (courseData) => {
     try {
-        const response = await fetch('http://localhost:3000/editar-curso', {
-            method: 'POST', // Método HTTP
+        const response = await fetch('http://localhost:3000/actualizar-curso', {
+            method: 'PUT', // Método HTTP
             headers: {
                 'Content-Type': 'application/json', // Indicamos que enviamos datos en formato JSON
             },

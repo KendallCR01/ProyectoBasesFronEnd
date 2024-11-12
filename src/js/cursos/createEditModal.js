@@ -1,4 +1,5 @@
 import { editarCurso } from "./editarCurso.js"; // Asegúrate de que esta función esté correctamente definida
+import { tableCursos } from "./viewCursos.js";
 
 export function createEditCourseModal(course) {
     let existDiv = document.getElementById('myModal-curso');
@@ -94,6 +95,7 @@ export function createEditCourseModal(course) {
             .then(response => {
                 console.log('Curso actualizado con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
+                tableCursos();
             })
             .catch(error => {
                 console.error('Error al actualizar curso:', error);

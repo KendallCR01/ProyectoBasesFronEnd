@@ -1,6 +1,6 @@
 export async function getCursos() {
     try {
-        const response = await fetch('http://localhost:3000/obtener-todos-cursos2');
+        const response = await fetch('http://localhost:3000/obtener-todos-cursos');
         const data = await response.json();
 
         if (data.message) {

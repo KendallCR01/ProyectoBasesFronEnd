@@ -1,12 +1,12 @@
 // Función de login utilizando una función flecha
-export const loginUser = async (username, password) => {
+export const loginUser = async (user, password) => {
     try {
         const response = await fetch('http://localhost:3000/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ username, password })  // Enviar username y password
+            body: JSON.stringify({ user, password })  // Enviar username y password
         });
 
         // Si la respuesta es exitosa (código 200)
