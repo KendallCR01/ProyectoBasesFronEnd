@@ -70,7 +70,13 @@ export const tableRutinas = async () => {
 
         // Fecha
         const fechaCell = document.createElement('td');
-        fechaCell.textContent = rutina.fecha;
+        const date = new Date(rutina.fecha);
+        const formattedDate = date.toLocaleDateString('es-ES', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+        fechaCell.textContent = formattedDate;
         row.appendChild(fechaCell);
 
         // Horas
