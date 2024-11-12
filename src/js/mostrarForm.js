@@ -17,6 +17,7 @@ export const viewInscripcion = () => {
 
     // Título de la vista
     const titulo = document.createElement('h2');
+    
     titulo.textContent = 'Formulario de Inscripción';
     titulo.classList.add('tituloInscripcion');
 
