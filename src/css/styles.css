@@ -836,6 +836,107 @@ body {
 }
 
 
+
+/* searchs.css */
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 8px; /* Espacio entre el input y el botón */
+}
+
+.search-input {
+    padding: 12px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.3);
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #45a049;
+    box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.3);
+}
+
+/* cliente por id*/
+.info-card {
+    background-image: url("/src/assets/inicio.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+    transition: transform 0.3s ease, opacity 0.3s;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+}
+
+.info-card-active {
+    opacity: 1;
+}
+
+.info-title {
+    font-size: 2em;
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-family: 'Playfair Display', serif;
+}
+
+.info-field {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+.info-label {
+    font-size: 1.1em;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+
+.info-data {
+    font-size: 1.1em;
+    color: #e0e0e0;
+    font-family: 'Playfair Display', serif;
+}
+
+.info-data:hover {
+    color: #ffffff;
+}
+
+
+
 /* Animación de aparición para el modal */
 @keyframes fadeIn {
     from {

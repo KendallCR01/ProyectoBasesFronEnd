@@ -80,9 +80,18 @@ export const tableClientes = async () => {
         row.appendChild(emailCell);
 
         // Fecha Inscripción
-        const fechaInscripcionCell = document.createElement('td');
-        fechaInscripcionCell.textContent = cliente.fecha_inscripcion;
-        row.appendChild(fechaInscripcionCell);
+        const fechaCell = document.createElement('td');
+
+        // Convierte la fecha a un objeto Date, luego formatea
+        const date = new Date(cliente.fecha_inscripcion);
+        const formattedDate = date.toLocaleDateString('es-ES', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+
+        fechaCell.textContent = formattedDate;
+        row.appendChild(fechaCell);
 
         // Celular
         const celularCell = document.createElement('td');

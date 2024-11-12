@@ -4,8 +4,7 @@ import { tableCursos } from "./viewCursos.js";
 export function createEditCourseModal(course) {
     let existDiv = document.getElementById('myModal-curso');
     if (existDiv) {
-        existDiv.style.display = 'block';
-        existDiv.innerHTML = ''; // Limpiar contenido anterior
+        existDiv.style.display = 'block';// Limpiar contenido anterior
     } else {
         // Si no existe, crea el contenedor del modal
         existDiv = document.createElement('div');

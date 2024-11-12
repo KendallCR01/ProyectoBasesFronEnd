@@ -39,7 +39,7 @@ export function createEditRutineModal(rutina) {
             { id: 'cliente', label: 'Cliente', type: 'number', required: true }, // Este campo sigue siendo 'text'
             { id: 'instructor', label: 'Instructor', type: 'number', required: true }, // Cambiado a 'number'
             { id: 'maquina', label: 'Maquina', type: 'number', required: true }, // Este campo sigue siendo 'text'
-            { id: 'fecha', label: 'Fecha', type: 'text', required: true }, // Este campo sigue siendo 'text'
+            { id: 'fecha', label: 'Fecha', type: 'date', required: true }, // Este campo sigue siendo 'text'
             { id: 'horas', label: 'Horas', type: 'number', required: true } // Cambiado a 'number'
     ];
 
