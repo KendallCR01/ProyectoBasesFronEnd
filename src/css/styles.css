@@ -1,0 +1,943 @@
+body {
+    background-image: url("/Proyecto-Gym/src/assets/gym4.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; /* Cambié a cover para mejor ajuste */
+    overflow: hidden;
+    min-height: 80vh; /* Aumenté la altura mínima para ocupar toda la vista */
+
+    margin: 0;
+    padding: 0;
+}
+
+/*Container*/
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Columna para menú y columna grande para el main */
+    grid-template-rows: auto 1fr auto; /* Fila de encabezado, contenido y pie de página */
+    gap: 10px;
+    height: 100vh;
+    overflow-x: auto;
+    grid-template-areas: 
+        "header header"
+        "main main"
+        "footer footer";
+}
+
+/*Main*/
+
+.main {
+    grid-area: main;
+    display: grid;
+    place-items: center;
+}
+
+/*Header*/
+
+.header {
+    grid-area: header;
+    width: 100%;
+    background-color: #22223B;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: sticky;
+}
+
+.header ul {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header ul li {
+    color: #EDEDED;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border-right: 1px solid #EDEDED;
+}
+
+.header ul li:last-child {
+    border-right: none;
+    margin-left: auto;
+}
+
+.header ul li:hover {
+    background-color: #FF7F50; /* Fondo en hover */
+    color: #22223B; /* Cambio de color del texto en hover */
+    transform: translateY(-1px); /* Efecto de movimiento hacia arriba */
+    border-radius: 20px; /* Bordes redondeados en hover */
+}
+
+.header ul li:before {
+    content: "";
+    position: absolute;
+    border-bottom: solid 1px orangered;
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+    border-radius: 20px;
+}
+
+.header ul li:hover::before {
+    transform: scaleX(1);
+} 
+
+
+/*---Login and Register---*/
+.login, .register {
+    display: grid;
+    background: linear-gradient(135deg, #4A4E69, #22223B, #F6F7D7);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0; 
+    max-width: 400px;
+    text-align: center;
+    transition: opacity 0.3s; /* Asegura que la transición se aplique a la opacidad */
+}
+
+.loginActive, .registerActive {
+    animation: fadeIn 1.2s ease forwards; /* Añadí una animación común para ambas */
+}
+
+.login h1, .register h1 {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-weight: 300;
+    font-size: 2rem;
+}
+
+.login label, .register label {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    color: aliceblue;
+}
+
+.login button, .register button {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.login form input[type="text"],
+.login form input[type="password"],
+.register form input[type="text"],
+.register form input[type="password"],
+.register form input[type="email"] { /* Agregué el tipo de input para el email */
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 80px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.login form button,
+.register form button {
+    cursor: pointer;
+    padding: 0.75em;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    width: 100%;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.login form button:hover,
+.register form button:hover {
+    background-color: #0056b3;
+}
+
+.highlight {
+    color: aliceblue;
+    text-decoration: underline;
+    transition: background-color 0.3s;
+    font-family: 'Playfair Display', serif;
+}
+
+/*---Vista Inicio---*/
+.viewInicio {
+    background-image: url("/Proyecto-Gym/src/assets/inicio.jpg");
+
+    background-size: cover; /* La imagen se ajustará al contenedor sin recortes */
+    background-position: center; /* Centrar la imagen */
+    background-repeat: no-repeat; /* Evitar que la imagen se repita */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra suave para dar profundidad */
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s ease, opacity 0.3s;
+    opacity: 0; 
+
+}
+
+.viewInicioActive{
+    animation: fadeIn 1.2s ease forwards; /* Añadí una animación común para ambas */
+}
+
+/* Efecto de hover para dar un ligero zoom */
+.viewInicio:hover {
+    transform: scale(1.02);
+}
+
+/* Estilo para el título de bienvenida */
+.viewInicio h1 {
+    font-size: 2.2em;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Estilo para la información */
+.viewInicio p {
+    font-size: 2.1em;
+    color: #ffffff;
+    margin: 10px 0;
+    line-height: 1.6;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Efecto adicional para los textos */
+.viewInicio p:hover {
+    color: whitesmoke;
+}
+
+/*---VIew Servicios---*/
+.viewServicios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+.servicio {
+    width: 250px; /* Ancho fijo para cada servicio */
+    padding: 20px; /* Espaciado interno */
+    background: linear-gradient(90deg, rgba(55,58,92,1) 0%, rgba(153,153,153,1) 100%, rgba(0,212,255,1) 100%); /* Fondo con degradado */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    text-align: center; /* Centrar el texto */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, opacity 0.3s ease; /* Transiciones suaves */
+}
+
+.servicio:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 212, 255, 0.7); /* Cambiar el color de fondo del servicio en hover */
+}
+
+.servicio h2 {
+    font-size: 1.5em;
+    color: whitesmoke;
+    margin-bottom: 10px;
+}
+
+.servicio p {
+    font-size: 1em;
+    color: whitesmoke;
+}
+.servicio:hover {
+    opacity: 1; /* Mantener la opacidad del servicio en hover */
+}
+
+.viewServicios:hover .servicio:not(:hover) {
+    opacity: 0.5; /* Oscurecer otros servicios */
+}
+
+/*---VistaMostrarInstructores----*/
+.viewInstructores {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.instructor {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px; /* Ajusta según sea necesario */
+    text-align: center;
+    background-color:white;
+    transition: transform 0.3s ease;
+}
+.instructor:hover{
+    transform: translateY(-10px);
+}
+
+.fotoInstructor {
+    width: 100%;
+    height: auto;
+    border-radius: 50%; /* Para hacer la foto redonda */
+}
+
+/*---View  de máquinas---*/
+.viewMaquinas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* Estilo para cada cuadro de máquina */
+.maquina {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.2s;
+}
+
+.maquina:hover {
+    transform: translateY(-5px);
+}
+
+/* Imagen de cada máquina */
+.maquina-imagen {
+    width: 160px; /* Establece el ancho deseado */
+    height: 150px; /* Establece el alto deseado */
+    margin-bottom: 10px;
+}
+
+/* Nombre de la máquina */
+.maquina h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Descripción de la máquina */
+.maquina p {
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.4;
+}
+
+/*---View de cursos---*/
+.viewCursos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Estilo para cada cuadro de curso */
+.curso {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    padding: 15px;
+    text-align: left;
+    transition: transform 0.2s;
+}
+
+.curso:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilo para el ID del curso */
+.curso-id {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Estilo para la descripción del curso */
+.curso-descripcion {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+/* Estilo para el horario del curso */
+.curso-horario {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+/* Estilo para la disponibilidad del curso */
+.curso-disponibilidad {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/*---View de Inscripcion--- */
+.viewInscripcion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #ffffff; /* Cambié a blanco para mayor contraste */
+    border-radius: 12px; /* Aumenté el radio de esquina para un aspecto más suave */
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+/* Título */
+.tituloInscripcion {
+    font-size: 2em; /* Aumenté el tamaño del título */
+    color: black;/* Cambié a un azul más vibrante */
+    margin-bottom: 20px;
+    text-align: center; /* Centrado del título */
+    text-transform: uppercase; /* Texto en mayúsculas para estilo */
+    letter-spacing: 1px; /* Espaciado entre letras */
+}
+
+/* Formulario */
+.formulario-inscripcion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Estilos de input y select */
+.input, .select {
+    padding: 12px; /* Aumenté el padding para mayor comodidad */
+    font-size: 1em;
+    margin-bottom: 15px;
+    border: 1px solid #ddd; /* Borde más claro */
+    border-radius: 6px; /* Radio de esquina más pronunciado */
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Agregué transición de sombra */
+}
+
+.input:focus, .select:focus {
+    border-color: #007BFF; /* Cambié el color de enfoque a azul */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al foco */
+}
+
+/* Botón de enviar */
+.btn-enviar {
+    padding: 12px; /* Aumenté el padding */
+    font-size: 1.1em; /* Aumenté el tamaño de fuente */
+    color: #ffffff;
+    background-color: #007BFF; /* Color azul del botón */
+    border: none;
+    border-radius: 6px; /* Radio de esquina más pronunciado */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Agregué efecto de transformación */
+}
+
+.btn-enviar:hover {
+    background-color: #0056b3; /* Color al pasar el mouse */
+    transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+}
+
+
+/*---View de contactos--- */
+.viewContactos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background-color: #ffffff; /* Fondo blanco para un contraste limpio */
+    border-radius: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra elegante */
+    background-image: url("/Proyecto-Gym/src/assets/contacto.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+
+    transition:  opacity 0.3s;
+    opacity: 0; 
+
+}
+
+.viewContactosActive{
+    animation: fadeIn 1.2s ease forwards; /* Añadí una animación común para ambas */
+}
+
+/*---Table Maquinas--- */
+/* Contenedor de la tabla general */
+.table-container {
+    width: auto;
+    height: auto;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 120px;
+}
+
+/* Estilos de tabla general */
+.general-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin-bottom: 60px;
+}
+
+.general-table thead tr {
+    background-color: #0073e6;
+    color: white;
+}
+
+.general-table th, .general-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.general-table th {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.general-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilos específicos para imágenes de tabla (máquinas/rutinas) */
+.table-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Botones de acción (editar y eliminar) */
+.edit-button, .delete-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: 0.9em;
+    color: white;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+}
+
+.delete-button {
+    background-color: #f44336;
+}
+
+.edit-button:hover {
+    background-color: #45a049;
+}
+
+.delete-button:hover {
+    background-color: #e53935;
+}
+
+/* Estilo del botón "Agregar" */
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+    margin-top: 150px;
+    margin-top: 120px;
+}
+
+.add-button {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #007BFF;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.3);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.add-button:hover {
+    background-color: #0056b3;
+    box-shadow: 0px 6px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* Esquema de color oscuro alternativo para tablas (opcional) */
+.dark-theme-table thead {
+    background-color: #333;
+}
+
+.dark-theme-table th, .dark-theme-table td {
+    border-bottom: 1px solid #444;
+    color: #e5e5e5;
+    font-size: 15px;
+}
+
+.dark-theme-table tbody tr:hover {
+    background-color: #292929;
+}
+
+
+
+/* Prefijo de 'addClientModal' para asegurar que estos estilos solo afecten a este modal */
+.addClientModal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.addClientModal .modal-content {
+    margin: 5% auto; /* Asegura que el modal se centre bien */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;  /* Establece el ancho del modal */
+    max-width: 600px; /* Limita el tamaño máximo del modal */
+    min-height: 300px; /* Establece una altura mínima */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out forwards;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.addClientModal h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.addClientModal .close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+
+.addClientModal .close:hover,
+.addClientModal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.addClientModal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.addClientModal input[type="text"],
+.addClientModal input[type="email"],
+.addClientModal input[type="tel"] {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+}
+
+.addClientModal button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.addClientModal button:hover {
+    background-color: #45a049;
+}
+
+/* Modal base error y succes */
+.success-modal,
+.error-modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Modal content */
+.success-modal .modal-content,
+.error-modal .modal-content {
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    min-height: 200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-modal .modal-content h2,
+.error-modal .modal-content h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.success-modal .close,
+.error-modal .close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+}
+
+.success-modal .close:hover,
+.error-modal .close:hover,
+.success-modal .close:focus,
+.error-modal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Botones */
+.success-modal button,
+.error-modal button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.success-modal button:hover,
+.error-modal button:hover {
+    background-color: #45a049;
+}
+
+/* Modal de éxito (verde) */
+.success-modal .modal-content {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.success-modal button {
+    background-color: #28a745;
+}
+
+.success-modal button:hover {
+    background-color: #218838;
+}
+
+/* Modal de error (rojo) */
+.error-modal .modal-content {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.error-modal button {
+    background-color: #dc3545;
+}
+
+.error-modal button:hover {
+    background-color: #c82333;
+}
+
+
+/* Estilo base para el modal de agregar curso */
+.modal-curso {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    display: none; /* Inicialmente no visible */
+}
+
+/* Contenido del modal de agregar curso */
+.modal-content-curso {
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    background-color: #fff;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px; /* Máximo ancho */
+    height: auto; /* Auto ajuste en altura */
+    overflow-y: auto; /* Desplazamiento si es necesario */
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Animación de aparición para el modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estilo para el botón de cerrar en el modal de curso */
+.close-curso {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-curso:hover,
+.close-curso:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Estilo para el formulario en el modal de curso */
+.modal-curso form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-curso input[type="text"],
+.modal-curso input[type="time"],
+textarea {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+}
+
+/* Estilo para el botón de enviar */
+.modal-curso button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.modal-curso button:hover {
+    background-color: #45a049;
+}
+
+
+
+
+
+
+
+/* Título */
+.titulo {
+    font-size: 2em; /* Tamaño de fuente del título */
+    color: white; /* Color azul para el título */
+    margin-bottom: 20px;
+    text-align: center; /* Centrado del título */
+    text-transform: uppercase; /* Texto en mayúsculas para estilo */
+    letter-spacing: 1px; /* Espaciado entre letras */
+}
+
+/* Estilos de cada contacto */
+.contacto {
+     /* Fondo suave para los cuadros de contacto */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px; /* Espaciado entre los cuadros de contacto */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidad */
+    width: 100%; /* Ancho completo */
+}
+
+/* Tipo de contacto */
+.contacto h3 {
+    font-size: 1.5em; /* Tamaño de fuente más grande para el tipo de contacto */
+    color:white; /* Color oscuro para buen contraste */
+    margin: 0 0 10px 0; /* Margen inferior para separación */
+}
+
+/* Detalle de contacto */
+.contacto p {
+    font-size: 1.1em; /* Tamaño de fuente para el detalle */
+    color: white; /* Color gris para el detalle */
+    margin: 0; /* Sin margen para un diseño limpio */
+}
+
+
+
+/*---VistaCliente----*/
+.viewClient {
+    display: grid;
+    background: linear-gradient(135deg, #E0E0E0, #F6F7D7, #FFFFFF);
+    padding: 2rem;
+    border-radius: 6px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 600px;
+    height: 300px;
+    text-align: center;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    .login, .register {
+        padding: 1.5rem;
+    }
+
+    .login h1, .register h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@keyframes fadeIn { /* Cambié el nombre de la animación a fadeIn */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
