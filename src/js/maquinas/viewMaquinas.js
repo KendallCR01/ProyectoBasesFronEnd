@@ -1,6 +1,7 @@
 import { getMaquinas } from "./traerMaquinas.js";
 import { obtenerImagenPorNombre } from "../traerImagines.js";
 import { createAddMachineModal } from "./createAddMaquinasModal.js";
+import { createEditMachineModal } from "./createEditMaquina.js";
 
 export const tableMaquinas = async () => {
     const divPrincipal = document.querySelector(".main");
@@ -81,7 +82,7 @@ export const tableMaquinas = async () => {
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar';
         editButton.classList.add('edit-button');
-        editButton.onclick = () => editMaquina(maquina);
+        editButton.onclick = () => createEditMachineModal(maquina);
         actionsCell.appendChild(editButton);
 
         // Botón Eliminar

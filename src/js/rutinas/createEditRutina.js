@@ -1,15 +1,15 @@
-import { editarMaquina } from "./editarMaquina.js"; // Asegúrate de tener esta función definida
-import { tableMaquinas } from "./viewMaquinas.js";
+import { editarRutina } from "./editarRutina.js"; // Asegúrate de tener esta función definida
+import { tableRutinas } from "./viewRutinas.js";
 
-export function createEditMachineModal(machine) {
-    let existDiv = document.getElementById('myModal-maquina');
+export function createEditRutineModal(rutina) {
+    let existDiv = document.getElementById('myModal-rutina');
     if (existDiv) {
         existDiv.style.display = 'block';
         existDiv.innerHTML = ''; // Limpiar contenido anterior
     } else {
         // Si no existe, crea el contenedor del modal
         existDiv = document.createElement('div');
-        existDiv.id = 'myModal-maquina';
+        existDiv.id = 'myModal-rutina';
         existDiv.classList.add('modal-curso');
         document.body.appendChild(existDiv);
     }
@@ -28,18 +28,19 @@ export function createEditMachineModal(machine) {
 
     // Título del modal
     const modalTitle = document.createElement('h2');
-    modalTitle.textContent = 'Editar Máquina';
+    modalTitle.textContent = 'Editar Rutina';
     modalTitle.style.color = 'black';
 
     // Formulario dentro del modal
     const form = document.createElement('form');
-    form.id = 'editMachineForm';
+    form.id = 'editRutineForm';
 
-    // Campos de entrada para máquina
     const fields = [
-        { id: 'descripcion', label: 'Descripción', type: 'text', required: true },
-        { id: 'estado', label: 'Estado', type: 'text', required: true },
-        { id: 'dificultad', label: 'Dificultad', type: 'text', required: true }
+            { id: 'cliente', label: 'Cliente', type: 'number', required: true }, // Este campo sigue siendo 'text'
+            { id: 'instructor', label: 'Instructor', type: 'number', required: true }, // Cambiado a 'number'
+            { id: 'maquina', label: 'Maquina', type: 'number', required: true }, // Este campo sigue siendo 'text'
+            { id: 'fecha', label: 'Fecha', type: 'text', required: true }, // Este campo sigue siendo 'text'
+            { id: 'horas', label: 'Horas', type: 'number', required: true } // Cambiado a 'number'
     ];
 
     fields.forEach(field => {
@@ -54,8 +55,8 @@ export function createEditMachineModal(machine) {
         input.required = field.required;
 
         // Pre-cargar valores de la máquina si estamos editando
-        if (machine && machine[field.id]) {
-            input.value = machine[field.id];
+        if (rutina && rutina[field.id]) {
+            input.value = rutina[field.id];
         }
 
         form.appendChild(label);
@@ -66,7 +67,7 @@ export function createEditMachineModal(machine) {
     // Botón de envío
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
-    submitButton.textContent = 'Actualizar Máquina';
+    submitButton.textContent = 'Actualizar Rutina';
     form.appendChild(submitButton);
 
     // Añadir el formulario al contenido del modal
@@ -81,24 +82,24 @@ export function createEditMachineModal(machine) {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const machineData = {};
+        const RutinaData = {};
         fields.forEach(field => {
             const inputElement = document.getElementById(field.id);
-            machineData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
+            RutinaData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
         });
 
         // Asegúrate de incluir el ID de la máquina para la actualización
-        machineData.id_maquina = machine.id_maquina;
+        RutinaData.id_rutina = rutina.id_rutina;
 
         // Enviar los datos al backend para editar
-        editarMaquina(machineData)
+        editarRutina(RutinaData)
             .then(response => {
-                console.log('Máquina actualizada con éxito:', response);
+                console.log('Rutina actualizada con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
-                tableMaquinas();
+                tableRutinas();
             })
             .catch(error => {
-                console.error('Error al actualizar máquina:', error);
+                console.error('Error al actualizar rutina:', error);
             });
     });
 

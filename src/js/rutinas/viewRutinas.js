@@ -1,4 +1,5 @@
 import { getRutinas } from "./traerRutinas.js";
+import { createEditRutineModal } from "./createEditRutina.js";
 
 export const tableRutinas = async () => {
     const divPrincipal = document.querySelector(".main");
@@ -84,7 +85,7 @@ export const tableRutinas = async () => {
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar';
         editButton.classList.add('edit-button');
-        editButton.onclick = () => editRutina(rutina);
+        editButton.onclick = () => createEditRutineModal(rutina);
         actionsCell.appendChild(editButton);
 
         // Botón Eliminar
