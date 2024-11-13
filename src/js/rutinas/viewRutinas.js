@@ -1,5 +1,8 @@
 import { getRutinas } from "./traerRutinas.js";
 import { createEditRutineModal } from "./createEditRutina.js";
+import { eliminarRutina } from "./eliminarRutinaPeticion.js";
+import { createAddRutinaModal } from "./createAddRutinaModal.js";
+
 
 export const tableRutinas = async () => {
     const divPrincipal = document.querySelector(".main");
@@ -16,7 +19,7 @@ export const tableRutinas = async () => {
 
     buttonContainer.addEventListener('click', (event) => {
         event.preventDefault();
-        viewAgregarRutina();
+        createAddRutinaModal();
     });
 
     divPrincipal.appendChild(buttonContainer);
@@ -98,7 +101,7 @@ export const tableRutinas = async () => {
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Eliminar';
         deleteButton.classList.add('delete-button');
-        deleteButton.onclick = () => deleteRutina(rutina.id_rutina);
+        deleteButton.onclick = () => eliminarRutina(rutina.id_rutina);
         actionsCell.appendChild(deleteButton);
 
         row.appendChild(actionsCell);

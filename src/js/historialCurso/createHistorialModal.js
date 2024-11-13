@@ -1,15 +1,15 @@
-import { agregarPostCurso } from "./agregarCursoPeticion.js";
-import { tableCursos } from "./viewCursos.js";
+import { editarHistorialCurso } from "./editarHistorial.js";
+import { tableHistorialCursos } from "./viewHistorialCursos.js";
 
-export function createAddCourseModal() {
-    let existDiv = document.getElementById('myModal-curso');
+export function createEditHistorialModal(historial) {
+    let existDiv = document.getElementById('myModal-historial');
     if (existDiv) {
         existDiv.style.display = 'block';
         existDiv.innerHTML = ''; // Limpiar contenido anterior
     } else {
         // Si no existe, crea el contenedor del modal
         existDiv = document.createElement('div');
-        existDiv.id = 'myModal-curso';
+        existDiv.id = 'myModal-historial';
         existDiv.classList.add('modal-curso');
         document.body.appendChild(existDiv);
     }
@@ -28,18 +28,17 @@ export function createAddCourseModal() {
 
     // Título del modal
     const modalTitle = document.createElement('h2');
-    modalTitle.textContent = 'Agregar Curso';
+    modalTitle.textContent = 'Editar Historial Curso';
     modalTitle.style.color = 'black';
 
     // Formulario dentro del modal
     const form = document.createElement('form');
-    form.id = 'addCourseForm';
+    form.id = 'editHistorialForm';
 
     // Campos de entrada para curso
     const fields = [
-        { id: 'descripcion', label: 'Descripción', type: 'text', required: true },
-        { id: 'horario', label: 'Horario', type: 'text', required: true },
-        { id: 'disponibilidad', label: 'Disponibilidad', type: 'text', required: true }
+        { id: 'fecha', label: 'Fecha', type: 'text', required: true },
+        { id: 'horas', label: 'Horas', type: 'number', required: true }
     ];
 
     fields.forEach(field => {
@@ -53,6 +52,11 @@ export function createAddCourseModal() {
         input.name = field.id;
         input.required = field.required;
 
+        // Pre-cargar valores del curso si estamos editando
+        if (historial && historial[field.id]) {
+            input.value = historial[field.id];
+        }
+
         form.appendChild(label);
         form.appendChild(input);
         form.appendChild(document.createElement('br'));
@@ -61,7 +65,7 @@ export function createAddCourseModal() {
     // Botón de envío
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
-    submitButton.textContent = 'Agregar Curso';
+    submitButton.textContent = 'Actualizar Hiastorial de Curso';
     form.appendChild(submitButton);
 
     // Añadir el formulario al contenido del modal
@@ -76,21 +80,24 @@ export function createAddCourseModal() {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const courseData = {};
+        const historialData = {};
         fields.forEach(field => {
             const inputElement = document.getElementById(field.id);
-            courseData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
+            historialData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
         });
 
-        // Enviar los datos al backend
-        agregarPostCurso(courseData)
+        // Asegúrate de incluir el ID del curso para la actualización
+        historialData.id_historial = historial.id_historial;
+
+        // Enviar los datos al backend para editar
+        editarHistorialCurso(historialData)
             .then(response => {
-                console.log('Curso agregado con éxito:', response);
+                console.log('Historial de curso actualizado con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
-                tableCursos();
+                tableHistorialCursos();
             })
             .catch(error => {
-                console.error('Error al agregar curso:', error);
+                console.error('Error al actualizar historial de curso:', error);
             });
     });
 

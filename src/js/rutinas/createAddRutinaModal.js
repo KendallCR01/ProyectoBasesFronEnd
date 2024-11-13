@@ -1,15 +1,14 @@
-import { agregarPostCurso } from "./agregarCursoPeticion.js";
-import { tableCursos } from "./viewCursos.js";
+import { agregarPostRutina } from "./AgregarRutinaPeticion.js"; // Asegúrate de tener esta función definida
 
-export function createAddCourseModal() {
-    let existDiv = document.getElementById('myModal-curso');
+export function createAddRutinaModal() {
+    let existDiv = document.getElementById('myModal-rutina');
     if (existDiv) {
         existDiv.style.display = 'block';
         existDiv.innerHTML = ''; // Limpiar contenido anterior
     } else {
         // Si no existe, crea el contenedor del modal
         existDiv = document.createElement('div');
-        existDiv.id = 'myModal-curso';
+        existDiv.id = 'myModal-maquina';
         existDiv.classList.add('modal-curso');
         document.body.appendChild(existDiv);
     }
@@ -28,19 +27,21 @@ export function createAddCourseModal() {
 
     // Título del modal
     const modalTitle = document.createElement('h2');
-    modalTitle.textContent = 'Agregar Curso';
+    modalTitle.textContent = 'Agregar Rutina';
     modalTitle.style.color = 'black';
 
     // Formulario dentro del modal
     const form = document.createElement('form');
-    form.id = 'addCourseForm';
+    form.id = 'addRutineForm';
 
-    // Campos de entrada para curso
+    // Campos de entrada para máquina
     const fields = [
-        { id: 'descripcion', label: 'Descripción', type: 'text', required: true },
-        { id: 'horario', label: 'Horario', type: 'text', required: true },
-        { id: 'disponibilidad', label: 'Disponibilidad', type: 'text', required: true }
-    ];
+        { id: 'cliente', label: 'Cliente', type: 'number', required: true }, 
+        { id: 'instructor', label: 'Instructor', type: 'number', required: true }, 
+        { id: 'maquina', label: 'Maquina', type: 'number', required: true }, 
+        { id: 'fecha', label: 'Fecha', type: 'date', required: true }, 
+        { id: 'horas', label: 'Horas', type: 'number', required: true } 
+];
 
     fields.forEach(field => {
         const label = document.createElement('label');
@@ -61,7 +62,7 @@ export function createAddCourseModal() {
     // Botón de envío
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
-    submitButton.textContent = 'Agregar Curso';
+    submitButton.textContent = 'Agregar Rutina';
     form.appendChild(submitButton);
 
     // Añadir el formulario al contenido del modal
@@ -76,21 +77,20 @@ export function createAddCourseModal() {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const courseData = {};
+        const rutineData = {};
         fields.forEach(field => {
             const inputElement = document.getElementById(field.id);
-            courseData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
+            rutineData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
         });
 
-        // Enviar los datos al backend
-        agregarPostCurso(courseData)
+        // Enviar los datos al backend para agregar la máquina
+        agregarPostRutina(rutineData)
             .then(response => {
-                console.log('Curso agregado con éxito:', response);
+                console.log('Rutina agregada con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
-                tableCursos();
             })
             .catch(error => {
-                console.error('Error al agregar curso:', error);
+                console.error('Error al agregar Rutina:', error);
             });
     });
 
