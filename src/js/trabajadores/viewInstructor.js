@@ -86,7 +86,7 @@ export const viewInstructor=(username)=>{
     
     const text= document.createElement('h1');
     
-    text.textContent='VISTA INSTRUCTOR';
+    text.textContent='BIENVENIDO INSTRUCTOR';
     
     divVista.appendChild(text);
     divPrincipal.appendChild(divVista);

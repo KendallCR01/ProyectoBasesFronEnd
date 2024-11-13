@@ -175,7 +175,6 @@ body {
     text-align: center;
     transition: transform 0.3s ease, opacity 0.3s;
     opacity: 0; 
-
 }
 
 .viewInicioActive{
@@ -1057,14 +1056,24 @@ textarea {
 
 /*---VistaCliente----*/
 .viewClient {
+    background-image: url("/src/assets/inicioGym.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: grid;
-    background: linear-gradient(135deg, #E0E0E0, #F6F7D7, #FFFFFF);
     padding: 2rem;
     border-radius: 6px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    width: 600px;
+    box-shadow: 0px 4px 8px rgba(23, 75, 189, 0.1);
+    color:whitesmoke;
+    width: 300px;
     height: 300px;
     text-align: center;
+    transition: transform 0.7s ease, opacity 0.3s;
+    animation: fadeIn 1.2s ease forwards;
+}
+
+.viewCliente:hover {
+    transform: scale(1.9);
 }
 
 /* Responsivo */
