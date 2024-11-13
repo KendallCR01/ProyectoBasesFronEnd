@@ -14,7 +14,6 @@ export const loginUser = async (user, password) => {
             const data = await response.json();
             console.log('Estado:', data.message);  // Muestra el mensaje del estado
             console.log('Rol:', data.role);        // Muestra el rol asignado (INSTRUCTOR o NULL)
-
             // Retornar el rol o la respuesta completa
             return data.role;  // Regresa el rol
         } else {

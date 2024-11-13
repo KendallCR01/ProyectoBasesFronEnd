@@ -1,7 +1,10 @@
 import { logoutUser } from "../conexion/logout.js";
+import { mostrarInfoMembresiaPorCliente } from "../membresia/viewMembresiaPorCliente.js";
 import { viewInicio } from "../mostrarInicio.js";
 
 export const viewCliente = (username) => {
+
+    console.log(username);
     // Clear and set up header
     const divHeader = document.querySelector(".header");
     divHeader.innerHTML = '';
@@ -16,7 +19,7 @@ export const viewCliente = (username) => {
 
     liMembresia.addEventListener('click', (event) => {
         event.preventDefault();
-        viewMembresia();
+        mostrarInfoMembresiaPorCliente(username);
     });
 
     // Logout option

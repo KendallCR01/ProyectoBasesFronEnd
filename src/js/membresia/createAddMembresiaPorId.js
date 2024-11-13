@@ -2,7 +2,7 @@ import { agregarPostMembresia } from "./agregarMembresiaPeticion.js";
 import { tableMembresia } from "./viewMembresia.js";
 import { mostrarInfoMembresiaPorCliente } from "./viewMembresiaPorCliente.js";
 
-export function createAddMembresiaModal() {
+export function createAddMembresiaModalPorId(idCliente) {
     let existDiv = document.getElementById('myModal-membresia');
     if (existDiv) {
         existDiv.style.display = 'block';
@@ -36,9 +36,8 @@ export function createAddMembresiaModal() {
     const form = document.createElement('form');
     form.id = 'addMmebresiaForm';
 
-    // Campos de entrada para curso
+    // Campos de entrada para la membresía
     const fields = [
-        { id: 'id_cliente', label: 'ID de Cliente', type: 'number', required: true },
         { id: 'monto', label: 'Monto', type: 'number', required: true },
         { id: 'estado', label: 'Estado de Membresia', type: 'text', required: true },
         { id: 'fecha', label: 'Fecha de creacion', type: 'date', required: true }
@@ -78,21 +77,26 @@ export function createAddMembresiaModal() {
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        const membresiaData = {};
-        fields.forEach(field => {
-            const inputElement = document.getElementById(field.id);
-            membresiaData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
-        });
+        // Crear el objeto membresiaData con los datos del formulario
+
+        const monto = Number(document.getElementById('monto').value.trim());
+        const estado = document.getElementById('estado').value.trim()
+        const fecha = document.getElementById('fecha').value.trim()
+        const id_cliente= Number(idCliente)
+
+        
+
+        console.log({ idCliente, monto, estado, fecha });
 
         // Enviar los datos al backend
-        agregarPostMembresia(membresiaData)
+        agregarPostMembresia({ id_cliente, monto , estado, fecha })
             .then(response => {
-                console.log('Membresia agregado con éxito:', response);
+                console.log('Membresía agregada con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
-                mostrarInfoMembresiaPorCliente();
+                mostrarInfoMembresiaPorCliente(idCliente);
             })
             .catch(error => {
-                console.error('Error al agregar membresia:', error);
+                console.error('Error al agregar membresía:', error);
             });
     });
 
