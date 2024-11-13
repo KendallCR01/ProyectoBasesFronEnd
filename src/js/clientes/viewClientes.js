@@ -5,22 +5,6 @@ export const tableClientes = async () => {
     const divPrincipal = document.querySelector(".main");
     divPrincipal.innerHTML = '';
 
-    // Contenedor del botón "Agregar Cliente"
-    const buttonContainer = document.createElement('div');
-    buttonContainer.classList.add('button-container');
-
-    const addButton = document.createElement('button');
-    addButton.textContent = 'Agregar Cliente';
-    addButton.classList.add('add-button');
-    buttonContainer.appendChild(addButton);
-
-    addButton.addEventListener('click', (event) => {
-        event.preventDefault();
-        createAddClientModal();
-    });
-
-    divPrincipal.appendChild(buttonContainer);
-
     // Contenedor de la tabla
     const tableContainer = document.createElement('div');
     tableContainer.classList.add('table-container');
@@ -32,7 +16,7 @@ export const tableClientes = async () => {
     // Cabecera de la tabla
     const thead = document.createElement('thead');
     const headerRow = document.createElement('tr');
-    const headers = ['Cédula', 'Nombre', 'Apellido1', 'Apellido2', 'Dirección', 'E-mail', 'Fecha Inscripción', 'Celular',  'Acciones'];
+    const headers = ['Cédula', 'Nombre', 'Apellido1', 'Apellido2', 'Dirección', 'E-mail', 'Fecha Inscripción', 'Celular'];
 
     headers.forEach(headerText => {
         const th = document.createElement('th');
@@ -99,24 +83,7 @@ export const tableClientes = async () => {
         row.appendChild(celularCell);
 
 
-        // Acciones
-        const actionsCell = document.createElement('td');
-
-        // Botón Editar
-        const editButton = document.createElement('button');
-        editButton.textContent = 'Editar';
-        editButton.classList.add('edit-button');
-        editButton.onclick = () => editCliente(cliente);
-        actionsCell.appendChild(editButton);
-
-        // Botón Eliminar
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Eliminar';
-        deleteButton.classList.add('delete-button');
-        deleteButton.onclick = () => deleteCliente(cliente.cedula);
-        actionsCell.appendChild(deleteButton);
-
-        row.appendChild(actionsCell);
+ 
         tbody.appendChild(row);
     });
 

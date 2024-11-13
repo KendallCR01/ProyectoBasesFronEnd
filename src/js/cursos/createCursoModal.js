@@ -1,3 +1,6 @@
+import { agregarPostCurso } from "./agregarCursoPeticion.js";
+import { tableCursos } from "./viewCursos.js"
+
 export function createAddCourseModal() {
     let existDiv = document.getElementById('myModal-curso');
     if (existDiv) {

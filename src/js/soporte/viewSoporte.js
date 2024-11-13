@@ -4,6 +4,8 @@ import { viewInicio } from "../mostrarInicio.js";
 import { searchClientView } from "../clientes/searchClient.js";
 import { searchCourseView } from "../cursos/searchCurso.js";
 import { searchRoutineView } from "../rutinas/searchRutina.js";
+import { tableBitacora } from "../auditorias/viewAuditorias.js";
+
 
 export const viewSoporte=(username)=>{
 
@@ -79,7 +81,10 @@ export const viewSoporte=(username)=>{
         searchRoutineView();
     })
 
-    
+    divLi5.addEventListener('click', async (event) => {
+        event.preventDefault();
+        tableBitacora();
+    })
     
     const divPrincipal=document.querySelector(".main");
     
