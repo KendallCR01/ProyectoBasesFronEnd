@@ -1,4 +1,4 @@
-// Función de login utilizando una función flecha
+import { createLoginErrorModal } from "../mensajesSalidas/errorSesion.js";
 export const loginUser = async (user, password) => {
     try {
         const response = await fetch('http://localhost:3000/login', {
@@ -21,7 +21,7 @@ export const loginUser = async (user, password) => {
             // Si la respuesta no es exitosa, manejar el error
             const errorData = await response.json();
             console.error('Error:', errorData.message);
-            return null;  // Retorna null si no se obtiene el rol
+            createLoginErrorModal(); // Retorna null si no se obtiene el rol
         }
     } catch (error) {
         console.error('Error al conectar con el backend:', error);

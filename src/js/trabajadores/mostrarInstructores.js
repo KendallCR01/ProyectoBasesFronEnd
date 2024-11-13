@@ -1,4 +1,4 @@
-import { getTrabajadores } from "./traerTrabajadoresPrincipal.js";
+import { getInstructores } from "./traerSoloInstructores.js";
 
 import { obtenerImagenPorNombre } from "../traerImagines.js";
 
@@ -7,7 +7,7 @@ import { obtenerImagenPorNombre } from "../traerImagines.js";
 
 export const viewInstructores = async () => {
 
-    const trabajadores = await getTrabajadores();
+    const trabajadores = await getInstructores();
     // Selecciona el área principal donde se mostrará la sección de instructores
     const divPrincipal = document.querySelector(".main");
     divPrincipal.innerHTML = ''; // Limpia el contenido anterior
@@ -17,13 +17,7 @@ export const viewInstructores = async () => {
     divVistaInstructores.classList.add('viewInstructores');
 
     // Define los datos de cada culturista famoso como instructores
-    const instructores = [
-        { id: 1, nombre: 'Chris Bumstead(Cbum)', edad: 29, foto: '/src/assets/cbum.jpg' },
-        { id: 2, nombre: 'Ronnie Coleman', edad: 60, foto: '/src/assets/coleman.jpg' },
-        { id: 3, nombre: 'Dorian Yates', edad: 62, foto: 'ruta/a/la/foto3.jpg' },
-        { id: 4, nombre: 'Phil Heath', edad: 44, foto: 'ruta/a/la/foto4.jpg' }
-    ];
-
+   
     // Itera sobre los instructores (culturistas) para crear un cuadro para cada uno
     trabajadores.forEach(instructor => {
         // Crea un cuadro para cada instructor
