@@ -1,7 +1,5 @@
 // viewInscripcion.js
 
-import { getCursos } from "./cursos/traerCursos.js";
-import { getTrabajadores } from "./trabajadores/traerTrabajadores.js"; 
 import { inscribirseFormulario } from "./clientes/inscribirClientes.js";
 import { getCursosDisponibles } from "./cursos/traerCursosDisponibles.js";
 import { getInstructores } from "./trabajadores/traerSoloInstructores.js";
@@ -22,6 +20,13 @@ export const viewInscripcion = async () => {
     // Formulario de inscripción
     const form = document.createElement('form');
     form.classList.add('formulario-inscripcion');
+
+    // Campo de contraseña (agregado al principio)
+    const inputContrasena = document.createElement('input');
+    inputContrasena.type = 'text';
+    inputContrasena.placeholder = 'Contraseña';
+    inputContrasena.required = true;
+    inputContrasena.classList.add('input');
 
     // Campo de cédula
     const inputCedula = document.createElement('input');
@@ -157,6 +162,7 @@ export const viewInscripcion = async () => {
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); // Prevenir el comportamiento por defecto del formulario
 
+        const contrasena = inputContrasena.value.trim();  // Obtenemos la contraseña
         const cedula = inputCedula.value.trim();
         const nombre = inputNombre.value.trim();
         const apellido1 = inputApellido1.value.trim();
@@ -167,16 +173,15 @@ export const viewInscripcion = async () => {
         const tel_habitacion = inputTelHabitacion.value.trim();
         const fecha_inscripcion = inputFechaInscripcion.value.trim();
         const horas = parseInt(inputHoras.value.trim());
-        const cursoId = selectCurso.value; // Aquí obtenemos el id_curso
-        const instructorId = selectInstructor.value; // Aquí obtenemos el cod_instructor
+        const cursoId = selectCurso.value; 
+        const instructorId = selectInstructor.value; 
 
         // Validación básica de que los campos estén completos
-        if (!cedula || !nombre || !apellido1 || !apellido2 || !direccion || !e_mail || !celular || !tel_habitacion || !fecha_inscripcion || !cursoId || !instructorId || !horas) {
+        if (!contrasena || !cedula || !nombre || !apellido1 || !apellido2 || !direccion || !e_mail || !celular || !tel_habitacion || !fecha_inscripcion || !cursoId || !instructorId || !horas) {
             alert("Por favor, complete todos los campos.");
             return;
         }
 
-        // Crear un objeto con todos los datos del formulario
         const formData = {
             cedula,
             nombre,
@@ -187,7 +192,7 @@ export const viewInscripcion = async () => {
             fecha_inscripcion,
             celular,
             tel_habitacion,
-            contrasena: '12345', // Si no tienes un campo de contraseña, puedes poner un valor por defecto
+            contrasena,
             id_curso: cursoId,
             instructor: instructorId,
             horas
@@ -205,8 +210,9 @@ export const viewInscripcion = async () => {
         form.reset();
     });
 
-    // Agrega los campos al formulario
+
     form.appendChild(inputCedula);
+    form.appendChild(inputContrasena);
     form.appendChild(inputNombre);
     form.appendChild(inputApellido1);
     form.appendChild(inputApellido2);
