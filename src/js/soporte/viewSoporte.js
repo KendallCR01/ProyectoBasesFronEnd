@@ -1,11 +1,11 @@
 import { logoutUser } from "../conexion/logout.js";
-import { viewMantenimiento } from "./viewMantenimiento.js";
+import { viewMantenimiento } from "../trabajadores/viewMantenimiento.js";
 import { viewInicio } from "../mostrarInicio.js";
 import { searchClientView } from "../clientes/searchClient.js";
 import { searchCourseView } from "../cursos/searchCurso.js";
 import { searchRoutineView } from "../rutinas/searchRutina.js";
 
-export const viewInstructor=(username)=>{
+export const viewSoporte=(username)=>{
 
     const divHeader=document.querySelector(".header");
     
@@ -25,12 +25,8 @@ export const viewInstructor=(username)=>{
 
     const divLi5=document.createElement('li');
 
+    const divLi6=document.createElement('li');
 
-
-
-
-    
-    
     
     divLi.textContent='MANTENIMIENTO'
     
@@ -40,8 +36,9 @@ export const viewInstructor=(username)=>{
 
     divLi4.textContent='RUTINAS'
     
+    divLi5.textContent='BITACORA'
 
-    divLi5.textContent='LOGOUT'
+    divLi6.textContent='LOGOUT'
 
 
     
@@ -50,11 +47,12 @@ export const viewInstructor=(username)=>{
     divUl.appendChild(divLi3);
     divUl.appendChild(divLi4);
     divUl.appendChild(divLi5);
+    divUl.appendChild(divLi6);
     divNav.appendChild(divUl);
     divHeader.appendChild(divNav);
 
 
-    divLi5.addEventListener('click', async (event) => {
+    divLi6.addEventListener('click', async (event) => {
         event.preventDefault();
         if (logoutUser(username)) {
             viewInicio();
@@ -93,9 +91,9 @@ export const viewInstructor=(username)=>{
     
     const text= document.createElement('h1');
     
-    text.textContent='BIENVENIDO INSTRUCTOR';
+    text.textContent='BIENVENIDO EQUIPO DE SOPORTE';
     
     divVista.appendChild(text);
     divPrincipal.appendChild(divVista);
-    
-    }
+
+}

@@ -1,7 +1,7 @@
 import { createErrorModal } from "../mensajesSalidas/errorModal.js";
 import { createSuccessModal } from "../mensajesSalidas/succesModal.js";
 
-export async function buscarCurso(id) {
+export async function buscarMaquina(id) {
     try {
         const response = await fetch(`http://localhost:3000/buscar-maquina/${id}`);
         

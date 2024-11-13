@@ -1,8 +1,8 @@
-
 import { registerView } from "./mostrarRegister.js";
 import { viewInstructor } from "../js/trabajadores/viewInstructor.js";
-
+import { viewCliente } from "./clientes/viewClient.js";
 import { loginUser } from "./conexion/peticionLogin.js";
+import { viewSoporte } from "./soporte/viewSoporte.js";
 
 export const login = async () => {
 
@@ -81,6 +81,12 @@ export const login = async () => {
             const userRol= await loginUser(inputUsername.value,inputPassword.value);
             if(userRol==='instructor'){
                 viewInstructor(inputUsername.value);
+            }
+            if(userRol==='cliente'){
+                viewCliente(inputUsername.value);
+            }
+            if(userRol==='soporte'){
+                viewSoporte(inputUsername.value);
             }
         } catch (error) {
             console.log(error.message);

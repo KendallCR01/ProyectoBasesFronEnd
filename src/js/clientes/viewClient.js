@@ -1,54 +1,50 @@
+import { logoutUser } from "../conexion/logout.js";
+import { viewInicio } from "../mostrarInicio.js";
 
-export const viewCliente=()=>{
+export const viewCliente = (username) => {
+    // Clear and set up header
+    const divHeader = document.querySelector(".header");
+    divHeader.innerHTML = '';
 
-const divHeader=document.querySelector(".header");
+    const nav = document.createElement('nav');
+    const ul = document.createElement('ul');
 
-divHeader.innerHTML='';
+    // Membresía option
+    const liMembresia = document.createElement('li');
+    liMembresia.textContent = 'MEMBRESÍA';
+    ul.appendChild(liMembresia);
 
-const divNav=document.createElement('nav');
+    liMembresia.addEventListener('click', (event) => {
+        event.preventDefault();
+        viewMembresia();
+    });
 
-const divUl=document.createElement('ul');
+    // Logout option
+    const liLogout = document.createElement('li');
+    liLogout.textContent = 'LOGOUT';
+    ul.appendChild(liLogout);
 
-const divLi=document.createElement('li');
+    liLogout.addEventListener('click', async (event) => {
+        event.preventDefault();
+        if (logoutUser(username)) {
+            viewInicio();
+        }
+    })
 
-const divLi2=document.createElement('li');
+    // Add navigation elements to header
+    nav.appendChild(ul);
+    divHeader.appendChild(nav);
 
-const divLi3=document.createElement('li');
+    // Set up main welcome message
+    const divMain = document.querySelector(".main");
+    divMain.innerHTML = '';
 
-const divLi4=document.createElement('li');
+    const divWelcome = document.createElement('div');
+    divWelcome.classList.add('viewClient');  // Same class as Instructor view
 
+    const welcomeText = document.createElement('h1');
+    welcomeText.textContent = 'BIENVENIDO CLIENTE';
 
-
-divLi.textContent='MAQUINAS'
-
-divLi2.textContent='PESAJE'
-
-divLi3.textContent='NUTRICION'
-
-divLi4.textContent='CONTACTO'
-
-
-divUl.appendChild(divLi);
-divUl.appendChild(divLi2);
-divUl.appendChild(divLi3);
-divUl.appendChild(divLi4);
-divNav.appendChild(divUl);
-divHeader.appendChild(divNav);
-
-
-const divPrincipal=document.querySelector(".main");
-
-divPrincipal.innerHTML='';
-
-const divVista=document.createElement('div');
-
-divVista.classList.add('viewClient')
-
-const text= document.createElement('h1');
-
-text.textContent='VISTA CLIENTE';
-
-divVista.appendChild(text);
-divPrincipal.appendChild(divVista);
-
-}
+    divWelcome.appendChild(welcomeText);
+    divMain.appendChild(divWelcome);
+};

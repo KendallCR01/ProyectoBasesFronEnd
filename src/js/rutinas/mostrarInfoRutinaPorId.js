@@ -1,10 +1,20 @@
 import { buscarRutina } from "./traerRutinaId.js";
 
+import { buscarCliente } from "../clientes/traerClienteId.js";
+import { buscarMaquina } from "../maquinas/traerMaquinaId.js";
+import { buscarTrabajador } from "../trabajadores/traerTrabajadorId.js";
+
 export const mostrarInfoRutina = async (idRutina) => {
     console.log(idRutina); // Verifica el idRutina que se pasa
     try {
         // Aquí deberías obtener la información de la rutina mediante una llamada a la API o base de datos
         const rutinaData = await buscarRutina(idRutina);
+        const cliente= await buscarCliente(rutinaData.cliente);
+        const instructor = await  buscarTrabajador (rutinaData.instructor);
+        const maquina= await buscarMaquina(rutinaData.maquina);
+        console.log(cliente);
+
+
         
         console.log(rutinaData);// Suponiendo que existe esta función
 
@@ -51,9 +61,9 @@ export const mostrarInfoRutina = async (idRutina) => {
 
         // Mostrar los campos de la rutina
         infoCard.appendChild(crearCampo("ID Rutina", rutinaData.id_rutina));
-        infoCard.appendChild(crearCampo("Cliente", rutinaData.cliente));
-        infoCard.appendChild(crearCampo("Instructor", rutinaData.instructor));
-        infoCard.appendChild(crearCampo("Máquina", rutinaData.maquina));
+        infoCard.appendChild(crearCampo("Cliente", cliente[0].nombre_cliente + ' ' + cliente[0].apellido1));
+        infoCard.appendChild(crearCampo("Instructor", instructor.nombre +' '+ instructor.apellido1));
+        infoCard.appendChild(crearCampo("Máquina", maquina.descripcion));
         infoCard.appendChild(crearCampo("Fecha", data.textContent));
         infoCard.appendChild(crearCampo("Horas", rutinaData.horas));
 
