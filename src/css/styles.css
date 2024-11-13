@@ -386,12 +386,14 @@ body {
 /*---View de Inscripcion--- */
 .viewInscripcion {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding: 30px;
     background-color: #ffffff; /* Cambié a blanco para mayor contraste */
     border-radius: 12px; /* Aumenté el radio de esquina para un aspecto más suave */
-    max-width: 400px;
+    width: auto;
+    border-radius: 20px;
+
     margin: 0 auto;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
@@ -404,6 +406,10 @@ body {
     text-align: center; /* Centrado del título */
     text-transform: uppercase; /* Texto en mayúsculas para estilo */
     letter-spacing: 1px; /* Espaciado entre letras */
+    margin-right: 30px;
+    transition: opacity 0.7;
+   
+    animation: fadeIn 1.8s ease forwards;
 }
 
 /* Formulario */
