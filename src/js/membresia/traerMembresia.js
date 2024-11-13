@@ -4,10 +4,10 @@ export async function getMembresias() {
         const data = await response.json();
 
         if (data.message) {
-            console.log(data.message); // Si no hay trabajadores, muestra el mensaje
+            console.log(data.message);
             return [];
         } else {
-            return data; // Devuelve la lista de trabajadores como un arreglo de objetos
+            return data; 
         }
     } catch (error) {
         console.error('Error al obtener membresias:', error);
