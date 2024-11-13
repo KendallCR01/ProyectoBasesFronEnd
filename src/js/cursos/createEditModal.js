@@ -38,8 +38,8 @@ export function createEditCourseModal(course) {
     // Campos de entrada para curso
     const fields = [
         { id: 'descripcion', label: 'Descripción', type: 'text', required: true },
-        { id: 'horario', label: 'Horario', type: 'text', required: true },
-        { id: 'disponibilidad', label: 'Disponibilidad', type: 'text', required: true }
+        { id: 'disponibilidad', label: 'Disponibilidad', type: 'text', required: true },
+        { id: 'horario', label: 'Horario', type: 'text', required: true }
     ];
 
     fields.forEach(field => {
@@ -82,13 +82,15 @@ export function createEditCourseModal(course) {
         e.preventDefault();
 
         const courseData = {};
+        courseData.id_curso = course.id_curso;
+
         fields.forEach(field => {
             const inputElement = document.getElementById(field.id);
             courseData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
         });
 
         // Asegúrate de incluir el ID del curso para la actualización
-        courseData.id_curso = course.id_curso;
+
 
         // Enviar los datos al backend para editar
         editarCurso(courseData)

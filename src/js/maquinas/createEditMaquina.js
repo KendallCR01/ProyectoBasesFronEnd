@@ -36,13 +36,13 @@ export function createEditMachineModal(machine) {
     form.id = 'editMachineForm';
 
     // Campos de entrada para máquina
-    const fields = [
+    const fields_M = [
         { id: 'descripcion', label: 'Descripción', type: 'text', required: true },
         { id: 'estado', label: 'Estado', type: 'text', required: true },
         { id: 'dificultad', label: 'Dificultad', type: 'text', required: true }
     ];
 
-    fields.forEach(field => {
+    fields_M.forEach(field => {
         const label = document.createElement('label');
         label.setAttribute('for', field.id);
         label.textContent = field.label;
@@ -82,7 +82,7 @@ export function createEditMachineModal(machine) {
         e.preventDefault();
 
         const machineData = {};
-        fields.forEach(field => {
+        fields_M.forEach(field => {
             const inputElement = document.getElementById(field.id);
             machineData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
         });
