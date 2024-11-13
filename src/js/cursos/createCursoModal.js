@@ -1,18 +1,15 @@
-import { agregarPostCurso } from "./agregarCursoPeticion.js";
-import { tableCursos } from "./viewCursos.js";
-
 export function createAddCourseModal() {
     let existDiv = document.getElementById('myModal-curso');
     if (existDiv) {
         existDiv.style.display = 'block';
-        existDiv.innerHTML = ''; // Limpiar contenido anterior
-    } else {
-        // Si no existe, crea el contenedor del modal
-        existDiv = document.createElement('div');
-        existDiv.id = 'myModal-curso';
-        existDiv.classList.add('modal-curso');
-        document.body.appendChild(existDiv);
+        return; // Salir de la función si el modal ya existe y solo mostrarlo
     }
+
+    // Si no existe, crea el contenedor del modal
+    existDiv = document.createElement('div');
+    existDiv.id = 'myModal-curso';
+    existDiv.classList.add('modal-curso');
+    document.body.appendChild(existDiv);
 
     // Crear contenido del modal
     const modalContent = document.createElement('div');
@@ -24,6 +21,7 @@ export function createAddCourseModal() {
     closeModal.innerHTML = '&times;';
     closeModal.onclick = function () {
         existDiv.style.display = 'none';
+        document.body.removeChild(existDiv); // Eliminar el modal del DOM
     };
 
     // Título del modal
@@ -87,6 +85,7 @@ export function createAddCourseModal() {
             .then(response => {
                 console.log('Curso agregado con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
+                document.body.removeChild(existDiv); // Eliminar el modal del DOM
                 tableCursos();
             })
             .catch(error => {

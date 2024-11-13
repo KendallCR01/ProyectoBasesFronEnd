@@ -23,6 +23,7 @@ export function createAddMachineModal() {
     closeModal.innerHTML = '&times;';
     closeModal.onclick = function () {
         existDiv.style.display = 'none';
+        document.body.removeChild(existDiv); // Eliminar el modal del DOM
     };
 
     // Título del modal
@@ -86,6 +87,7 @@ export function createAddMachineModal() {
             .then(response => {
                 console.log('Máquina agregada con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
+                document.body.removeChild(existDiv); // Eliminar el modal del DOM
             })
             .catch(error => {
                 console.error('Error al agregar máquina:', error);

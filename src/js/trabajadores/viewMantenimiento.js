@@ -4,6 +4,8 @@ import { tableRutinas } from "../rutinas/viewRutinas.js";
 import { tableCursos } from "../cursos/viewCursos.js";
 import { tableClientes } from "../clientes/viewClientes.js";
 import { tableHistorialCursos } from "../historialCurso/viewHistorialCursos.js";
+import { tableMembresia } from "../membresia/viewMembresia.js";
+
 
 export const viewMantenimiento = () => {
     // Selecciona el área principal donde se mostrará la sección de servicios
@@ -21,7 +23,7 @@ export const viewMantenimiento = () => {
         { id: 'Maquinas', title: 'Máquinas', description: 'Sistema de maquinas.' },
         { id: 'Rutinas', title: 'Rutinas', description: 'Sistema de Rutinas' },
         { id: 'Historial', title: 'Historial de Cursos', description: 'Sistema Historial de todos los cursos' },
-
+        { id: 'Membresias', title: 'Membresias', description: 'Sistema de membresias de Cliente' },
     ];
 
     // Itera sobre los servicios para crear un cuadro para cada uno
@@ -101,6 +103,18 @@ export const viewMantenimiento = () => {
                 }
             }); 
         }
+
+        if (servicio.id === 'Membresias') {
+            divServicio.addEventListener('click', (event) => {
+                event.preventDefault();
+                try {
+                    tableMembresia(); // Llama a la función para mostrar instructores
+                } catch (error) {
+                    console.log(error.message);
+                }
+            }); 
+        }
+
         
     });
 

@@ -1,15 +1,15 @@
-import { editarHistorialCurso } from "./editarHistorial.js";
-import { tableHistorialCursos } from "./viewHistorialCursos.js";
+import { agregarPostMembresia } from "./agregarMembresiaPeticion.js";
+import { tableMembresia } from "./viewMembresia.js";
 
-export function createEditHistorialModal(historial) {
-    let existDiv = document.getElementById('myModal-historial');
+export function createAddMembresiaModal() {
+    let existDiv = document.getElementById('myModal-membresia');
     if (existDiv) {
         existDiv.style.display = 'block';
         existDiv.innerHTML = ''; // Limpiar contenido anterior
     } else {
         // Si no existe, crea el contenedor del modal
         existDiv = document.createElement('div');
-        existDiv.id = 'myModal-historial';
+        existDiv.id = 'myModal-membresia';
         existDiv.classList.add('modal-curso');
         document.body.appendChild(existDiv);
     }
@@ -28,17 +28,19 @@ export function createEditHistorialModal(historial) {
 
     // Título del modal
     const modalTitle = document.createElement('h2');
-    modalTitle.textContent = 'Editar Historial Curso';
+    modalTitle.textContent = 'Agregar membresia';
     modalTitle.style.color = 'black';
 
     // Formulario dentro del modal
     const form = document.createElement('form');
-    form.id = 'editHistorialForm';
+    form.id = 'addMmebresiaForm';
 
     // Campos de entrada para curso
     const fields = [
-        { id: 'fecha', label: 'Fecha', type: 'text', required: true },
-        { id: 'horas', label: 'Horas', type: 'number', required: true }
+        { id: 'id_cliente', label: 'ID de Cliente', type: 'number', required: true },
+        { id: 'monto', label: 'Monto', type: 'number', required: true },
+        { id: 'estado', label: 'Estado de Membresia', type: 'text', required: true },
+        { id: 'fecha', label: 'Fecha de creacion', type: 'date', required: true }
     ];
 
     fields.forEach(field => {
@@ -52,11 +54,6 @@ export function createEditHistorialModal(historial) {
         input.name = field.id;
         input.required = field.required;
 
-        // Pre-cargar valores del curso si estamos editando
-        if (historial && historial[field.id]) {
-            input.value = historial[field.id];
-        }
-
         form.appendChild(label);
         form.appendChild(input);
         form.appendChild(document.createElement('br'));
@@ -65,7 +62,7 @@ export function createEditHistorialModal(historial) {
     // Botón de envío
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
-    submitButton.textContent = 'Actualizar Hiastorial de Curso';
+    submitButton.textContent = 'Agregar Membresia';
     form.appendChild(submitButton);
 
     // Añadir el formulario al contenido del modal
@@ -79,24 +76,22 @@ export function createEditHistorialModal(historial) {
     // Manejo del evento submit para el formulario
     form.addEventListener('submit', function (e) {
         e.preventDefault();
-        const historialData = {};
+
+        const membresiaData = {};
         fields.forEach(field => {
             const inputElement = document.getElementById(field.id);
-            historialData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
+            membresiaData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
         });
 
-        // Asegúrate de incluir el ID del curso para la actualización
-        historialData.id_historial = historial.id_historial;
-
-        // Enviar los datos al backend para editar
-        editarHistorialCurso(historialData)
+        // Enviar los datos al backend
+        agregarPostMembresia(membresiaData)
             .then(response => {
-                console.log('Historial de curso actualizado con éxito:', response);
+                console.log('Membresia agregado con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
-                tableHistorialCursos();
+                tableMembresia();
             })
             .catch(error => {
-                console.error('Error al actualizar historial de curso:', error);
+                console.error('Error al agregar membresia:', error);
             });
     });
 
