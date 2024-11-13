@@ -2,6 +2,7 @@ import { getMaquinas } from "./traerMaquinas.js";
 import { obtenerImagenPorNombre } from "../traerImagines.js";
 import { createAddMachineModal } from "./createAddMaquinasModal.js";
 import { createEditMachineModal } from "./createEditMaquina.js";
+import { eliminarMaquina } from "./eliminarMaquinaPeticion.js";
 
 export const tableMaquinas = async () => {
     const divPrincipal = document.querySelector(".main");
@@ -50,7 +51,7 @@ export const tableMaquinas = async () => {
 
     maquinas.forEach(maquina => {
         const row = document.createElement('tr');
-
+        
         // Imagen
         const imgCell = document.createElement('td');
         const img = document.createElement('img');
@@ -89,7 +90,7 @@ export const tableMaquinas = async () => {
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Eliminar';
         deleteButton.classList.add('delete-button');
-        deleteButton.onclick = () => deleteMaquina(maquina.id);
+        deleteButton.onclick = () => eliminarMaquina(maquina.id_maquina);
         actionsCell.appendChild(deleteButton);
 
         row.appendChild(actionsCell);

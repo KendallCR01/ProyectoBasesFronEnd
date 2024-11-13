@@ -9,17 +9,17 @@ export function createAddMachineModal() {
         // Si no existe, crea el contenedor del modal
         existDiv = document.createElement('div');
         existDiv.id = 'myModal-maquina';
-        existDiv.classList.add('modal-maquina');
+        existDiv.classList.add('modal-curso');
         document.body.appendChild(existDiv);
     }
 
     // Crear contenido del modal
     const modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content-maquina');
+    modalContent.classList.add('modal-content-curso');
 
     // Botón de cerrar (X)
     const closeModal = document.createElement('span');
-    closeModal.classList.add('close-maquina');
+    closeModal.classList.add('close-curso');
     closeModal.innerHTML = '&times;';
     closeModal.onclick = function () {
         existDiv.style.display = 'none';

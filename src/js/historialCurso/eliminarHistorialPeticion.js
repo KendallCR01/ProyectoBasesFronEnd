@@ -1,10 +1,10 @@
 import { createErrorModal } from "../mensajesSalidas/errorModal.js";
 import { createSuccessModal } from "../mensajesSalidas/succesModal.js";
-import { tableCursos } from "./viewCursos.js";
+import { tableHistorialCursos } from "./viewHistorialCursos.js";
 
-export const eliminarCurso = async (id_curso) => {
+export const eliminarHistorial = async (id_historial) => {
     try {
-        const response = await fetch(`http://localhost:3000/delete-cursos/${id_curso}`, { // Usar comillas invertidas para la interpolación
+        const response = await fetch(`http://localhost:3000/delete-historial-curso/${id_historial}`, { // Usar comillas invertidas para la interpolación
             method: 'DELETE', // Método HTTP
             headers: {
                 'Content-Type': 'application/json',
@@ -14,11 +14,11 @@ export const eliminarCurso = async (id_curso) => {
 
         // Verificamos si la respuesta fue exitosa
         if (response.ok) {
-            console.log('Curso eliminado con éxito:', data.message);
+            console.log('Historial de curso eliminado con éxito:', data.message);
             createSuccessModal(); // Mostrar modal de éxito
-            tableCursos();
+            tableHistorialCursos();
         } else {
-            console.error('Error al eliminar curso:', data.message);
+            console.error('Error al eliminar historial de curso:', data.message);
             createErrorModal(); // Mostrar modal de error
         }
     } catch (error) {

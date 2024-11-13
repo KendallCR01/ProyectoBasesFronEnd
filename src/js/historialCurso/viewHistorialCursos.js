@@ -1,4 +1,7 @@
 import { getHistorialCursos } from "../historialCurso/traerHistorialCursos.js"
+import { createEditHistorialModal } from "./createHistorialModal.js";
+import { eliminarHistorial } from "./eliminarHistorialPeticion.js"
+import { createAddCourseModal } from "./createAddHistorialModal.js"
 
 export const tableHistorialCursos = async () => {
     const divPrincipal = document.querySelector(".main");
@@ -15,7 +18,7 @@ export const tableHistorialCursos = async () => {
 
     addButton.addEventListener('click', (event) => {
         event.preventDefault();
-        viewAgregarHistorialCurso();
+        createAddCourseModal();
     });
 
     divPrincipal.appendChild(buttonContainer);
@@ -94,14 +97,14 @@ export const tableHistorialCursos = async () => {
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar';
         editButton.classList.add('edit-button');
-        editButton.onclick = () => editHistorialCurso(historial);
+        editButton.onclick = () => createEditHistorialModal(historial);
         actionsCell.appendChild(editButton);
 
         // Botón Eliminar
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Eliminar';
         deleteButton.classList.add('delete-button');
-        deleteButton.onclick = () => deleteHistorialCurso(historial.id_historial);
+        deleteButton.onclick = () => eliminarHistorial(historial.id_historial);
         actionsCell.appendChild(deleteButton);
 
         row.appendChild(actionsCell);
