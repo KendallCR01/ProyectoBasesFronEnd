@@ -2,14 +2,13 @@ import { editarCurso } from "./editarCurso.js"; // Asegúrate de que esta funci�
 import { tableCursos } from "./viewCursos.js";
 
 export function createEditCourseModal(course) {
-    let existDiv = document.getElementById('myModal-curso');
+    let existDiv = document.getElementById('myModal-curso-edit');
     if (existDiv) {
-        existDiv.style.display = 'block';// Limpiar contenido anterior
-        existDiv.innerHTML = ''; // Limpiar contenido anterior
+        existDiv.style.display = 'block';
+        existDiv.innerHTML = '';
     } else {
-        // Si no existe, crea el contenedor del modal
         existDiv = document.createElement('div');
-        existDiv.id = 'myModal-curso';
+        existDiv.id = 'myModal-curso-edit';
         existDiv.classList.add('modal-curso');
         document.body.appendChild(existDiv);
     }
@@ -53,7 +52,6 @@ export function createEditCourseModal(course) {
         input.name = field.id;
         input.required = field.required;
 
-        // Pre-cargar valores del curso si estamos editando
         if (course && course[field.id]) {
             input.value = course[field.id];
         }
@@ -63,21 +61,17 @@ export function createEditCourseModal(course) {
         form.appendChild(document.createElement('br'));
     });
 
-    // Botón de envío
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
     submitButton.textContent = 'Actualizar Curso';
     form.appendChild(submitButton);
 
-    // Añadir el formulario al contenido del modal
     modalContent.appendChild(closeModal);
     modalContent.appendChild(modalTitle);
     modalContent.appendChild(form);
 
-    // Añadir el contenido del modal al contenedor del modal
     existDiv.appendChild(modalContent);
 
-    // Manejo del evento submit para el formulario
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -86,17 +80,13 @@ export function createEditCourseModal(course) {
 
         fields.forEach(field => {
             const inputElement = document.getElementById(field.id);
-            courseData[field.id] = inputElement.value.trim(); // Eliminar espacios en blanco innecesarios
+            courseData[field.id] = inputElement.value.trim();
         });
 
-        // Asegúrate de incluir el ID del curso para la actualización
-
-
-        // Enviar los datos al backend para editar
         editarCurso(courseData)
             .then(response => {
                 console.log('Curso actualizado con éxito:', response);
-                existDiv.style.display = 'none'; // Cerrar el modal después de enviar
+                existDiv.style.display = 'none';
                 tableCursos();
             })
             .catch(error => {
@@ -104,5 +94,5 @@ export function createEditCourseModal(course) {
             });
     });
 
-    existDiv.style.display = 'block'; // Mostrar el modal
+    existDiv.style.display = 'block';
 }
