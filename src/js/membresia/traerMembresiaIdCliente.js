@@ -16,7 +16,7 @@ export async function buscarMembresiaPorCliente(idCliente) {
             }
         } else {
             console.error("Error en la respuesta del servidor");
-            createErrorModal("Error en el servidor al buscar membresías.");
+            //createErrorModal("Error en el servidor al buscar membresías.");
             return []; // Retorna un arreglo vacío en caso de error del servidor
         }
     } catch (error) {

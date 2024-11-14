@@ -2,8 +2,8 @@ import { eliminarMembresia } from "./eliminarMembresiaPeticion.js";
 import { buscarCliente } from "../clientes/traerClienteId.js";
 import { buscarMembresiaPorCliente } from "./traerMembresiaIdCliente.js";
 import { createAddMembresiaModalPorId } from "./createAddMembresiaPorId.js";
+import { viewCliente} from "../clientes/viewClient.js";
 
-import { viewCliente } from "../clientes/viewClient.js";
 
 export const mostrarInfoMembresiaPorCliente = async (cedulaCliente) => {
     try {
@@ -64,20 +64,20 @@ export const mostrarInfoMembresiaPorCliente = async (cedulaCliente) => {
         buttonContainer.appendChild(addButton);
 
         // Delete Membership button
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Eliminar Membresía';
-        deleteButton.classList.add('delete-button');
-        deleteButton.addEventListener('click', async (event) => {
+        const deleteButtonClienteMem = document.createElement('button');
+        deleteButtonClienteMem.textContent = 'Eliminar Membresía';
+        deleteButtonClienteMem.classList.add('delete-button');
+        deleteButtonClienteMem.addEventListener('click', async (event) => {
             event.preventDefault();
             try {
                 await eliminarMembresia(Number(membresiaData[0].id));
-                viewCliente(); // Refresh after deletion
+                mostrarInfoMembresiaPorCliente(cedulaCliente); // Refresh after deletion
             } catch (error) {
                 console.error('Error al eliminar la membresía:', error);
                 alert('No se pudo eliminar la membresía.');
             }
         });
-        buttonContainer.appendChild(deleteButton);
+        buttonContainer.appendChild(deleteButtonClienteMem);
 
         infoCard.appendChild(buttonContainer); // Append button container to infoCard
         divPrincipal.appendChild(infoCard); // Display the infoCard in the main div

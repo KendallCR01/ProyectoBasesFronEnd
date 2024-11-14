@@ -39,7 +39,7 @@ export function createAddCourseModal() {
     const fields = [
         { id: 'id_curso', label: 'ID de curso', type: 'number', required: true },
         { id: 'cliente', label: 'ID de Cliente', type: 'number', required: true },
-        { id: 'fecha_inscripcion', label: 'Fecha', type: 'text', required: true },
+        { id: 'fecha_inscripcion', label: 'Fecha', type: 'date', required: true },
         { id: 'horas', label: 'Horas del curso', type: 'number', required: true },
         { id: 'instructor', label: 'Codigo de Instructor', type: 'number', required: true }
     ];

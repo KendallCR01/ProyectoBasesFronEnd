@@ -1,4 +1,5 @@
 import { agregarPostMaquina } from "./agregarMaquinaPeticion.js"; // Asegúrate de tener esta función definida
+import { tableMaquinas } from "./viewMaquinas.js";
 
 export function createAddMachineModal() {
     let existDiv = document.getElementById('myModal-maquina');
@@ -88,6 +89,7 @@ export function createAddMachineModal() {
                 console.log('Máquina agregada con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
                 document.body.removeChild(existDiv); // Eliminar el modal del DOM
+                tableMaquinas(); // Actualizar la tabla de máquinas
             })
             .catch(error => {
                 console.error('Error al agregar máquina:', error);

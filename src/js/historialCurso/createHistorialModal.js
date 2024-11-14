@@ -37,7 +37,7 @@ export function createEditHistorialModal(historial) {
 
     // Campos de entrada para curso
     const fields = [
-        { id: 'fecha', label: 'Fecha', type: 'text', required: true },
+        { id: 'fecha', label: 'Fecha', type: 'date', required: true },
         { id: 'horas', label: 'Horas', type: 'number', required: true }
     ];
 

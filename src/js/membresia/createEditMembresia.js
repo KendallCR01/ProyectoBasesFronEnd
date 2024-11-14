@@ -96,6 +96,8 @@ export function createEditMembresiaModal(membresia) {
             .then(response => {
                 console.log('Membresia actualizada con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
+                form.reset();
+                document.body.removeChild(existDiv);
                 tableMembresia();
             })
             .catch(error => {

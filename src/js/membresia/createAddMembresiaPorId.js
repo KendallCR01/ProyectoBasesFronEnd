@@ -93,6 +93,8 @@ export function createAddMembresiaModalPorId(idCliente) {
             .then(response => {
                 console.log('Membresía agregada con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
+                form.reset();
+                document.body.removeChild(existDiv);
                 mostrarInfoMembresiaPorCliente(idCliente);
             })
             .catch(error => {

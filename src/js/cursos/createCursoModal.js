@@ -77,6 +77,8 @@ export function createAddCourseModal() {
             .then(response => {
                 console.log('Curso agregado con éxito:', response);
                 existDiv.style.display = 'none';
+                form.reset();
+                document.body.removeChild(existDiv);
                 tableCursos();
             })
             .catch(error => {

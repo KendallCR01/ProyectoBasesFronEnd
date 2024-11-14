@@ -1,6 +1,5 @@
 import { agregarPostMembresia } from "./agregarMembresiaPeticion.js";
 import { tableMembresia } from "./viewMembresia.js";
-import { mostrarInfoMembresiaPorCliente } from "./viewMembresiaPorCliente.js";
 
 export function createAddMembresiaModal() {
     let existDiv = document.getElementById('myModal-membresia');
@@ -89,7 +88,9 @@ export function createAddMembresiaModal() {
             .then(response => {
                 console.log('Membresia agregado con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
-                mostrarInfoMembresiaPorCliente();
+                form.reset();
+                document.body.removeChild(existDiv);
+                tableMembresia();
             })
             .catch(error => {
                 console.error('Error al agregar membresia:', error);

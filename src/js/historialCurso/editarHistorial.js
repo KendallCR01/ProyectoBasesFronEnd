@@ -4,7 +4,7 @@ import { createSuccessModal } from "../mensajesSalidas/succesModal.js";
 
 export const editarHistorialCurso = async (historialData) => {
     try {
-        const response = await fetch(`http://localhost:3000/actualizar-historial-curso`, {
+        const response = await fetch(`http://localhost:3000/actualizar-historial`, {
             method: 'put',
             headers: {
                 'Content-Type': 'application/json',

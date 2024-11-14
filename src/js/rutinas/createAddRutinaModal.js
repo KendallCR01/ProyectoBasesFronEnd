@@ -1,4 +1,5 @@
 import { agregarPostRutina } from "./AgregarRutinaPeticion.js"; // Asegúrate de tener esta función definida
+import { tableRutinas } from "./viewRutinas.js";
 
 export function createAddRutinaModal() {
     let existDiv = document.getElementById('myModal-rutina');
@@ -88,6 +89,7 @@ export function createAddRutinaModal() {
             .then(response => {
                 console.log('Rutina agregada con éxito:', response);
                 existDiv.style.display = 'none'; // Cerrar el modal después de enviar
+                tableRutinas();
             })
             .catch(error => {
                 console.error('Error al agregar Rutina:', error);

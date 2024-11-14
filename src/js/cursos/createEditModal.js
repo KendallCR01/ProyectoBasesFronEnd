@@ -87,6 +87,8 @@ export function createEditCourseModal(course) {
             .then(response => {
                 console.log('Curso actualizado con éxito:', response);
                 existDiv.style.display = 'none';
+                form.reset();
+                document.body.removeChild(existDiv);
                 tableCursos();
             })
             .catch(error => {

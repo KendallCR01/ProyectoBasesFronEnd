@@ -73,11 +73,14 @@ export const tableMembresia = async () => {
         estadoCell.textContent = membresia.estado;
         row.appendChild(estadoCell);
 
-
-
         const fechaCell = document.createElement('td');
         const date = new Date(membresia.fecha);
-        fechaCell.textContent = date.toLocaleString('es-ES'); // Incluye fecha y hora
+        const formattedDate = date.toLocaleDateString('es-ES', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+        fechaCell.textContent = formattedDate;
         row.appendChild(fechaCell);
 
         // Acciones
